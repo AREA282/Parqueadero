@@ -21,18 +21,15 @@ public class Celda implements Serializable {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 	@Column(name="cantidadCeldas")
 	private int cantidadCeldas;
-	@JoinColumn(name="vehiculo")
-	@OneToOne
-	private Vehiculo vehiculo;
 	
 	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public int getCantidadCeldas() {
@@ -40,12 +37,6 @@ public class Celda implements Serializable {
 	}
 	public void setCantidadCeldas(int cantidadCeldas) {
 		this.cantidadCeldas = cantidadCeldas;
-	}
-	public Vehiculo getVehiculo() {
-		return vehiculo;
-	}
-	public void setVehiculo(Vehiculo vehiculo) {
-		this.vehiculo = vehiculo;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
