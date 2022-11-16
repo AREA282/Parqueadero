@@ -36,16 +36,20 @@ public class VehiculoService {
 	}
 
 	public String crearVehiculo(@RequestBody Vehiculo vehiculo) {
-		if (celdaService.consultarCeldasDisponibles() <= 30){
+		vehiculoDao.save(vehiculo);
+		/*if (celdaService.consultarCeldasDisponibles() <= 30){
 			vehiculoDao.save(vehiculo);
 			celdaService.agregarUnVehiculoCelda();
 			return "Se guardó el vehiculo: " + vehiculo.getPlaca();
 		}
 		
-		return "No hay capacidad";
+		return "No hay capacidad";*/
+		return "Se registró el vehiculo";
 	}
 
 	public String sacarVehiculo(String placa) {
+		/*
+		}
 		Vehiculo vehiculo = vehiculoDao.findByPlaca(placa);
 		Date fechaSalida = new Date();
 		Date fechaEntrada = vehiculo.getFechaEntrada();
@@ -55,7 +59,11 @@ public class VehiculoService {
 		vehiculoDao.delete(vehiculo);
 		celdaService.eliminarUnVehiculoCelda();
 		return "El valor de la instancia " + factura + " el tiempo transcurrido fue " + diffMinutes + " minutos";
+		*/
+		Vehiculo vehiculo = vehiculoDao.findByPlaca(placa);
+		vehiculoDao.delete(vehiculo);
+		return "Se eliminó el vehiculo";
 	}
 	
-	
+
 }
