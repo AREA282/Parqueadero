@@ -16,7 +16,7 @@ import com.parqueadero.model.Usuario;
 import com.parqueadero.service.UsuarioService;
 
 @RestController
-@RequestMapping("api/biblioteca/usuario")
+@RequestMapping("api/parqueadero/usuario")
 public class UsuarioController {
 	
 	@Autowired
