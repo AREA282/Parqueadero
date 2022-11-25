@@ -26,6 +26,9 @@ public class Vehiculo implements Serializable{
 	private String placa;
 	@Column(name = "fecha_entrada")
 	private Date fechaEntrada = new Date();
+
+	@Column(name = "fecha_ultimo_pago")
+	private Date fechaPago = new Date();
 	
 	
 	public Long getId() {
@@ -46,5 +49,12 @@ public class Vehiculo implements Serializable{
 	public void setFechaEntrada(Date fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
-	
+
+	public Date getFechaPago() {
+		return fechaPago;
+	}
+
+	public void setFechaPago(Date fechaPago) {
+		this.fechaPago = fechaPago;
+	}
 }

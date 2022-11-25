@@ -54,7 +54,7 @@ public class VehiculoService {
 		Date fechaSalida = new Date();
 		Date fechaEntrada = vehiculo.getFechaEntrada();
 		long diff = fechaSalida.getTime() - fechaEntrada.getTime();
-		long diffMinutes = Math.round(diff / (60 * 1000)) + 1;
+		long diffMinutes = Math.round(diff / (24 * 60 * 1000)) + 1;
 		long factura = diffMinutes * 100;
 		vehiculoDao.delete(vehiculo);
 		celdaService.eliminarUnVehiculoCelda();
