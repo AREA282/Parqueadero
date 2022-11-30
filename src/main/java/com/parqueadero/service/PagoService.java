@@ -34,22 +34,24 @@ public class PagoService {
         return pagos;
     }
 
-    public List<Pago> consultarPagosPlaca(@RequestParam String placa) {
-        Vehiculo vehiculo = vehiculoDao.findByPlaca(placa);
-
-        List<Pago> pagos = pagoDao.findbyPlaca(vehiculo.getPlaca());
-        return pagos;
-    }
 
     public Pago liquidarVehiculo(@RequestParam String placa) {
         Vehiculo vehiculo = vehiculoDao.findByPlaca(placa);
-        Date dateBefore  = vehiculo.getFechaPago();
+        Date dateBefore;
+        if (vehiculo.getFechaPago()==null){
+            dateBefore=vehiculo.getFechaEntrada();
+        }else {
+            dateBefore=vehiculo.getFechaPago();
+        }
         Date dateAfter  = new Date();
 
         long dateBeforeInMs = dateBefore.getTime();
         long dateAfterInMs = dateAfter.getTime();
         long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
         long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
+
+        vehiculo.setFechaPago(new Date());
+        vehiculoDao.save(vehiculo);
 
         Pago pago = new Pago();
         pago.setPrecio(2000*daysDiff);
